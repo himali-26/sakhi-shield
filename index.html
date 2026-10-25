@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAKHI SHIELD | Women's Safety</title>
+
+<style>
+:root {
+  --bg: #080611;
+  --panel: rgba(20, 15, 38, .91);
+  --pink: #f12d91;
+  --purple: #804bff;
+  --cyan: #05c9c7;
+  --text: #f8f3ff;
+  --muted: #c0b5d8;
+  --border: rgba(167, 113, 255, .32);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+}
+button, input, textarea, select { font: inherit; }
+button { cursor: pointer; }
+
+.hero {
+  position: relative;
+  min-height: 300px;
+  background:
+    linear-gradient(90deg, rgba(7,5,18,.98), rgba(10,5,24,.76), rgba(9,4,19,.24)),
+    linear-gradient(0deg, #080611 0%, transparent 65%),
+    url("https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1800&q=85");
+  background-size: cover;
+  background-position: center 35%;
+  border-bottom: 1px solid var(--border);
+}
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding: 22px 5%;
+  position: relative;
+  z-index: 2;
+}
+.brand { display: flex; align-items: center; gap: 13px; }
+.brandIcon {
+  width: 54px; height: 54px;
+  border: 2px solid #e84cba;
+  border-radius: 17px;
+  display: grid; place-items: center;
+  font-size: 29px;
+  background: #231239;
+  box-shadow: 0 0 22px #b42bca44;
+}
+.brand h1 { margin: 0; font-size: clamp(21px,3vw,32px); }
+.brand h1 span { color: #f45bb9; }
+.brand p { margin: 5px 0 0; color: var(--muted); font-size: 13px; }
+.top-tag {
+  padding: 10px 16px;
+  border: 1px solid var(--border);
+  border-radius: 30px;
+  background: #171025c9;
+  font-size: 13px;
+}
+.heroContent {
+  padding: 25px 5% 45px;
+  position: relative;
+  z-index: 1;
+  max-width: 850px;
+}
+.eyebrow {
+  color: #ff69c3;
+  letter-spacing: 3px;
+  font-size: 12px;
+  font-weight: bold;
+}
+.heroContent h2 {
+  font-size: clamp(31px,5vw,52px);
+  margin: 13px 0;
+  line-height: 1.12;
+}
+.heroContent h2 span {
+  color: #f65db8;
+  text-shadow: 0 0 25px #f12d9140;
+}
+.heroContent p {
+  color: #e0d7ef;
+  max-width: 510px;
+  line-height: 1.7;
+}
+main { max-width: 1250px; margin: auto; padding: 22px 22px 45px; }
+
+.alertBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  background: #241027;
+  border: 1px solid #88356d;
+  border-radius: 13px;
+  padding: 15px 18px;
+  margin-bottom: 24px;
+  color: #f7d8ee;
+  font-size: 13px;
+}
+.emergencyLink {
+  text-decoration: none;
+  color: white;
+  background: #b72370;
+  padding: 10px 15px;
+  border-radius: 30px;
+  font-weight: bold;
+}
+.sectionTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin: 25px 0 16px;
+}
+.sectionTitle h2 { margin: 0; font-size: 22px; }
+.sectionTitle span { color: #bd9cff; font-size: 12px; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 18px;
+}
+.card {
+  background: linear-gradient(145deg,rgba(30,22,51,.97),rgba(13,10,27,.97));
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 21px;
+  min-width: 0;
+  box-shadow: 0 8px 30px #0002;
+  transition: transform .2s, border-color .2s;
+}
+.card:hover { transform: translateY(-3px); border-color: #a87aff; }
+.cardHead { display: flex; gap: 13px; align-items: center; }
+.icon {
+  width: 53px; height: 53px;
+  flex-shrink: 0;
+  border-radius: 16px;
+  display: grid; place-items: center;
+  font-size: 26px;
+}
+.pink { background: #f12d9120; color: #ff54b0; border: 1px solid #f12d9155; }
+.purple { background: #804bff22; color: #ae8aff; border: 1px solid #804bff66; }
+.teal { background: #05c9c71c; color: #25e7df; border: 1px solid #05c9c766; }
+.orange { background: #ff982022; color: #ffad50; border: 1px solid #ff982066; }
+.blue { background: #3689ff22; color: #66a7ff; border: 1px solid #3689ff66; }
+.card h3 { margin: 0; font-size: 17px; }
+.card p {
+  color: var(--muted);
+  line-height: 1.6;
+  font-size: 13px;
+}
+.card .description { min-height: 62px; }
+.btn {
+  width: 100%;
+  padding: 12px 14px;
+  margin-top: 9px;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+  background: linear-gradient(100deg,#b9227b,#8a36dc);
+}
+.btn:hover { filter: brightness(1.15); }
+.btn.tealBtn { background: linear-gradient(100deg,#078d91,#06b9b5); }
+.btn.blueBtn { background: linear-gradient(100deg,#245fdb,#397ff4); }
+.btn.orangeBtn { background: linear-gradient(100deg,#bf6218,#ef8a28); }
+.btn.purpleBtn { background: linear-gradient(100deg,#6733c4,#8550ed); }
+.btn.secondary {
+  background: #2a203f;
+  border: 1px solid #665087;
+}
+.btn.dangerBtn { background: #b91c49; }
+
+label {
+  display: block;
+  font-size: 13px;
+  font-weight: bold;
+  margin: 12px 0 6px;
+}
+input, textarea, select {
+  width: 100%;
+  background: #0d0a19;
+  color: white;
+  border: 1px solid #49365f;
+  border-radius: 9px;
+  padding: 11px;
+  outline: none;
+}
+input:focus, textarea:focus, select:focus { border-color: #bb75ff; }
+textarea { min-height: 95px; resize: vertical; }
+select option { background: #171025; }
+.result {
+  background: #0d0a19;
+  border: 1px solid #49365f;
+  border-radius: 11px;
+  padding: 13px;
+  margin-top: 13px;
+  overflow-wrap: anywhere;
+  line-height: 1.6;
+  font-size: 13px;
+}
+.hidden { display: none !important; }
+.result h4 { color: #ff70c4; margin: 0 0 8px; font-size: 15px; }
+.result p { overflow-wrap: anywhere; }
+.pill {
+  display: inline-block;
+  background: #45245d;
+  color: #e5c8ff;
+  padding: 5px 9px;
+  border-radius: 20px;
+  margin: 3px;
+  font-size: 12px;
+}
+.item {
+  border: 1px solid #49365f;
+  border-radius: 10px;
+  padding: 11px;
+  margin-top: 9px;
+  overflow-wrap: anywhere;
+}
+.smallBtn { width: auto; padding: 7px 11px; font-size: 12px; }
+.row { display: flex; gap: 10px; }
+.row > div { flex: 1; min-width: 0; }
+
+.quickExit {
+  margin-top: 20px;
+  background: linear-gradient(100deg,#1b102c,#20142f);
+  border: 1px solid #8a387c;
+  border-radius: 17px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.quickExit h3 { margin: 0; }
+.quickExit p { margin-bottom: 0; color: var(--muted); font-size: 13px; }
+
+footer {
+  text-align: center;
+  padding: 22px;
+  color: #9f90b9;
+  border-top: 1px solid #2b203e;
+  font-size: 12px;
+}
+#neutralScreen {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #f3f4f6;
+  color: #252525;
+  padding: 25px;
+}
+.neutralInner {
+  max-width: 650px;
+  margin: 10vh auto;
+  padding: 28px;
+  background: white;
+  border-radius: 13px;
+}
+.fakeLine { height: 11px; background: #e5e7eb; border-radius: 8px; margin: 17px 0; }
+
+@media(max-width:900px) {
+  .grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+@media(max-width:600px) {
+  .grid { grid-template-columns: 1fr; }
+  .hero { min-height: 340px; background-position: 58% center; }
+  .topbar { padding: 17px; }
+  .top-tag { display: none; }
+  .heroContent { padding: 20px 20px 35px; }
+  main { padding: 16px 13px 30px; }
+  .card { padding: 17px; }
+  .row { flex-direction: column; gap: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<header class="hero">
+  <div class="topbar">
+    <div class="brand">
+      <div class="brandIcon">🛡️</div>
+      <div>
+        <h1>SAKHI <span>SHIELD</span></h1>
+        <p>Your Safety. Your Control. Your Voice.</p>
+      </div>
+    </div>
+    <div class="top-tag">💜 Stay Safe · Stay Strong</div>
+  </div>
+
+  <div class="heroContent">
+    <div class="eyebrow">YOUR PERSONAL SAFETY COMPANION</div>
+    <h2>Hello, <span>Stay Safe.</span> 💗</h2>
+    <p>You are stronger than you think. Be prepared, stay alert, and take control of your safety.</p>
+  </div>
+</header>
+
+<main>
+  <div class="alertBar">
+    <div>🛡️ <strong>Safety demo:</strong> This prototype does not automatically send messages or share your location.</div>
+    <a class="emergencyLink" href="tel:112">☎ Call 112 — India</a>
+  </div>
+
+  <div class="sectionTitle">
+    <h2>✨ Your Safety Dashboard</h2>
+    <span>YOUR SPACE · YOUR CONTROL</span>
+  </div>
+
+  <div class="grid">
+
+    <section class="card">
+      <div class="cardHead">
+        <div class="icon pink">🆘</div>
+        <h3>Emergency SOS</h3>
+      </div>
+      <p class="description">Prepare a message for someone you trust. Copy it and send it when you need help.</p>
+      <label for="sosContact">Trusted contact name (optional)</label>
+      <input id="sosContact" placeholder="e.g. Aditi">
+      <label for="sosLocation">Location (optional)</label>
+      <input id="sosLocation" placeholder="Only add if safe">
+      <button class="btn" id="prepareSOSBtn">✈ Prepare SOS message</button>
+      <div id="sosResult" class="result hidden" aria-live="polite"></div>
+    </section>
+
+    <section class="card">
+      <div class="cardHead">
+        <div class="icon purple">📍</div>
+        <h3>Safe Journey</h3>
+      </div>
+      <p class="description">Record your destination and expected arrival on this device.</p>
+      <label for="destination">Destination</label>
+      <input id="destination" placeholder="Where are you going?">
+      <label for="arrival">Expected arrival</label>
+      <input
+  id="arrival"
+  type="datetime-local"
+  required
+  style="width:100%; padding:12px; cursor:pointer; color-scheme:dark;"
+>
+      <label for="journeyContact">Trusted contact</label>
+      <input id="journeyContact" placeholder="Name or phone">
+      <button class="btn purpleBtn" id="startJourneyBtn">➜ Start journey</button>
+      <button class="btn secondary" id="endJourneyBtn">End journey</button>
+      <div id="journeyStatus" class="result">No active journey.</div>
+    </section>
+
+    <section class="card">
+      <div class="cardHead">
+        <div class="icon teal">🔎</div>
+        <h3>Threat Message Checker</h3>
+      </div>
+      <p class="description">Check a message for suspicious keywords. This is a simple demo, not an AI detector.</p>
+      <label for="threatText">Suspicious message</label>
+      <textarea id="threatText" placeholder="Paste a suspicious message..."></textarea>
+      <button class="btn tealBtn" id="analyzeThreatBtn">⌕ Analyze message</button>
+      <button class="btn secondary" id="clearThreatBtn">Clear text</button>
+      <div id="threatResult" class="result hidden" aria-live="polite"></div>
+    </section>
+
+    <section class="card">
+      <div class="cardHead">
+        <div class="icon orange">📝</div>
+        <h3>Incident Journal</h3>
+      </div>
+      <p class="description">Save notes about incidents locally in this browser. Use only a safe device.</p>
+      <label for="incidentType">Incident type</label>
+      <select id="incidentType">
+        <option>Harassment</option>
+        <option>Stalking</option>
+        <option>Online blackmail</option>
+        <option>Threatening message</option>
+        <option>Privacy breach</option>
+        <option>Other</option>
+      </select>
+      <label for="incidentNote">Incident notes</label>
+      <textarea id="incidentNote" placeholder="Write notes only if safe..."></textarea>
+      <button class="btn orangeBtn" id="saveIncidentBtn">＋ Save incident</button>
+      <button class="btn secondary" id="exportBtn">⬇ Export records (JSON)</button>
+      <div id="incidentList" aria-live="polite"></div>
+    </section>
+
+    <section class="card">
+      <div class="cardHead">
+        <div class="icon blue">⏱️</div>
+        <h3>Check-in Timer</h3>
+      </div>
+      <p class="description">Set a reminder to check in with someone you trust. Keep this page open.</p>
+      <label for="timerMinutes">Reminder time</label>
+      <select id="timerMinutes">
+        <option value="1">1 minute (test)</option>
+        <option value="5" selected>5 minutes</option>
+        <option value="10">10 minutes</option>
+        <option value="15">15 minutes</option>
+        <option value="30">30 minutes</option>
+      </select>
+      <button class="btn blueBtn" id="startTimerBtn">◷ Start timer</button>
+      <button class="btn secondary" id="cancelTimerBtn">Cancel timer</button>
+      <div id="timerStatus" class="result">Timer not running.</div>
+    </section>
+
+    <section class="card">
+      <div class="cardHead">
+        <div class="icon purple">🛡️</div>
+        <h3>Personal Safety Plan</h3>
+      </div>
+      <p class="description">Generate a starter checklist for the situation you select.</p>
+      <label for="planType">Situation</label>
+      <select id="planType">
+        <option value="stalking">Stalking or being followed</option>
+        <option value="blackmail">Online blackmail</option>
+        <option value="harassment">Harassment</option>
+        <option value="privacy">Privacy breach or identity misuse</option>
+      </select>
+      <button class="btn purpleBtn" id="generatePlanBtn">✦ Build safety plan</button>
+      <div id="planResult" class="result hidden" aria-live="polite"></div>
+    </section>
+
+  </div>
+
+  <section class="quickExit">
+    <div>
+      <h3>🚪 Quick Exit</h3>
+      <p>Switch to a neutral-looking screen. This does not erase browser history.</p>
+    </div>
+    <button class="btn" style="width:auto;min-width:190px" id="quickExitBtn">◉ Open neutral screen</button>
+  </section>
+</main>
+
+<footer>
+  💜 SAKHI SHIELD · Hackathon Prototype · Stay safe, seek trusted help.
+</footer>
+
+<div id="neutralScreen">
+  <div class="neutralInner">
+    <h2>📚 Study Notes</h2>
+    <p>Personal study dashboard</p>
+    <div class="fakeLine" style="width:82%"></div>
+    <div class="fakeLine" style="width:64%"></div>
+    <div class="fakeLine" style="width:90%"></div>
+    <p>Today's focus: review notes, organize tasks, and plan your next study session.</p>
+    <button class="btn" id="returnDashboardBtn">Return to dashboard</button>
+  </div>
+</div>
+
+<script>
+'use strict';
+
+const $ = id => document.getElementById(id);
+const STORAGE_KEY = 'sakhiShieldIncidents_v1';
+let timerHandle = null;
+
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, ch => ({
+    '&':'&amp;', '<':'&lt;', '>':'&gt;',
+    '"':'&quot;', "'":'&#39;'
+  }[ch]));
+}
+
+function showMessage(element, html) {
+  element.classList.remove('hidden');
+  element.innerHTML = html;
+}
+
+/* EMERGENCY SOS */
+function prepareSOS() {
+  const contact = $('sosContact').value.trim();
+  const location = $('sosLocation').value.trim();
+
+  let message = 'I may be in danger and need help. Please contact me as soon as it is safe.';
+
+  if (contact) message = 'Hi ' + contact + ', ' + message;
+  if (location) message += ' My location / meeting point: ' + location + '.';
+
+  message += ' If there is an immediate emergency in India, call 112.';
+
+  window.sosMessage = message;
+
+  showMessage($('sosResult'),
+    '<h4>✓ Emergency SOS message prepared</h4>' +
+    '<p id="sosMessageText"></p>' +
+    '<button class="btn" type="button" id="copySOSBtn">Copy message</button>' +
+    '<p>This message has not been sent automatically.</p>'
+  );
+
+  $('sosMessageText').textContent = message;
+  $('copySOSBtn').addEventListener('click', copySOSMessage);
+}
+
+async function copySOSMessage() {
+  const message = window.sosMessage || '';
+  try {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(message);
+      alert('SOS message copied! Open your messaging app to send it.');
+    } else {
+      window.prompt('Copy your SOS message:', message);
+    }
+  } catch (error) {
+    window.prompt('Copy your SOS message:', message);
+  }
+}
+
+/* SAFE JOURNEY */
+function startJourney() {
+  const destination = $('destination').value.trim();
+
+  if (!destination) {
+    alert('Please enter your destination first.');
+    $('destination').focus();
+    return;
+  }
+
+  const journey = {
+    destination,
+    arrival: $('arrival').value,
+    contact: $('journeyContact').value.trim(),
+    startedAt: new Date().toISOString()
+  };
+
+  try {
+    localStorage.setItem('sakhiJourney_v1', JSON.stringify(journey));
+  } catch (error) {}
+
+  renderJourney(journey);
+}
+
+function renderJourney(journey) {
+  $('journeyStatus').innerHTML =
+    '<strong style="color:#56e7b0">✓ Journey in progress</strong>' +
+    '<p><b>Destination:</b> ' + escapeHTML(journey.destination) + '</p>' +
+    '<p><b>Expected arrival:</b> ' +
+    escapeHTML(journey.arrival ? new Date(journey.arrival).toLocaleString() : 'Not set') + '</p>' +
+    '<p><b>Trusted contact:</b> ' + escapeHTML(journey.contact || 'Not set') + '</p>' +
+    '<p>This page does not automatically share your trip or alert anyone.</p>';
+}
+
+function endJourney() {
+  try { localStorage.removeItem('sakhiJourney_v1'); } catch (error) {}
+  $('journeyStatus').textContent = 'Journey marked as ended.';
+}
+
+/* THREAT MESSAGE CHECKER */
+function analyzeThreat() {
+  const message = $('threatText').value.trim();
+
+  if (!message) {
+    alert('Paste a message to analyze first.');
+    $('threatText').focus();
+    return;
+  }
+
+  const text = message.toLowerCase();
+
+  const rules = [
+    {name:'Blackmail or coercion', words:[
+      'expose your photos','leak your photos','send money or else',
+      'i will expose','blackmail','share your pictures','pay me or'
+    ]},
+    {name:'Threat or intimidation', words:[
+      'i will hurt you','i will find you','kill you',
+      'you will regret','i know where you live','follow you'
+    ]},
+    {name:'Credential or financial scam', words:[
+      'send otp','share otp','password','bank details',
+      'upi pin','verify your account','click this link','send me the otp'
+    ]},
+    {name:'Pressure or urgency', words:[
+      'right now','immediately','within 24 hours',
+      'urgent','do not tell anyone','keep this secret'
+    ]}
+  ];
+
+  const matches = rules.filter(rule =>
+    rule.words.some(word => text.includes(word))
+  );
+
+  const highRisk = matches.some(rule =>
+    ['Blackmail or coercion','Threat or intimidation'].includes(rule.name)
+  );
+
+  const level = highRisk ? 'Potentially high risk' :
+    matches.length ? 'Needs caution' : 'No known keyword matched';
+
+  let advice = 'Trust your judgment. Avoid unsafe replies. Preserve evidence if safe and seek help from someone you trust.';
+
+  if (matches.some(rule => rule.name === 'Blackmail or coercion')) {
+    advice = 'Do not pay or send additional images. Save evidence if safe, report the account, and seek trusted support.';
+  } else if (matches.some(rule => rule.name === 'Credential or financial scam')) {
+    advice = 'Never share OTPs, passwords, or UPI PINs. Avoid suspicious links and use the official service app.';
+  }
+
+  showMessage($('threatResult'),
+    '<h4>Analysis: ' + escapeHTML(level) + '</h4>' +
+    (matches.length
+      ? matches.map(rule => '<span class="pill">' + escapeHTML(rule.name) + '</span>').join('')
+      : '<span class="pill">No matching keywords</span>') +
+    '<p>' + escapeHTML(advice) + '</p>' +
+    '<p>This is a keyword-based demo, not an AI detector or a guarantee of safety.</p>'
+  );
+}
+
+/* INCIDENT JOURNAL */
+function readIncidents() {
+  try {
+    const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+    return Array.isArray(data) ? data : [];
+  } catch (error) {
+    return [];
+  }
+}
+
+function saveIncident() {
+  const note = $('incidentNote').value.trim();
+
+  if (!note) {
+    alert('Please write a short note first.');
+    $('incidentNote').focus();
+    return;
+  }
+
+  const items = readIncidents();
+
+  items.unshift({
+    id: Date.now(),
+    type: $('incidentType').value,
+    note,
+    createdAt: new Date().toISOString()
+  });
+
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+    $('incidentNote').value = '';
+    renderIncidents();
+    alert('Incident saved on this device.');
+  } catch (error) {
+    alert('Could not save. Browser storage may be unavailable.');
+  }
+}
+
+function renderIncidents() {
+  const items = readIncidents();
+
+  if (!items.length) {
+    $('incidentList').innerHTML = '<p>No incidents saved yet.</p>';
+    return;
+  }
+
+  $('incidentList').innerHTML =
+    '<h4>Saved incidents (' + items.length + ')</h4>' +
+    items.map(item =>
+      '<div class="item">' +
+      '<strong>' + escapeHTML(item.type) + '</strong>' +
+      '<p>' + escapeHTML(new Date(item.createdAt).toLocaleString()) + '</p>' +
+      '<p>' + escapeHTML(item.note) + '</p>' +
+      '<button class="btn dangerBtn smallBtn" data-delete-id="' + Number(item.id) + '">Delete</button>' +
+      '</div>'
+    ).join('');
+
+  $('incidentList').querySelectorAll('[data-delete-id]').forEach(button => {
+    button.addEventListener('click', () => deleteIncident(Number(button.dataset.deleteId)));
+  });
+}
+
+function deleteIncident(id) {
+  if (!confirm('Delete this incident record from this browser?')) return;
+  const items = readIncidents().filter(item => item.id !== id);
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(items)); } catch (error) {}
+  renderIncidents();
+}
+
+function exportRecords() {
+  let journey = null;
+  try { journey = JSON.parse(localStorage.getItem('sakhiJourney_v1') || 'null'); } catch (error) {}
+
+  const data = {
+    exportedAt: new Date().toISOString(),
+    incidents: readIncidents(),
+    activeJourney: journey
+  };
+
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+
+  link.href = url;
+  link.download = 'sakhi-shield-records.json';
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+}
+
+/* CHECK-IN TIMER */
+function startTimer() {
+  if (timerHandle) clearTimeout(timerHandle);
+
+  const minutes = Number($('timerMinutes').value) || 5;
+
+  $('timerStatus').textContent =
+    'Reminder set for ' + minutes + ' minute(s). Keep this page open.';
+
+  timerHandle = setTimeout(() => {
+    timerHandle = null;
+    $('timerStatus').innerHTML =
+      '<h4>⏰ Check in now</h4><p>Are you safe? Contact someone you trust if you need help.</p>';
+    alert('SAKHI SHIELD reminder: Please check in now.');
+  }, minutes * 60 * 1000);
+}
+
+function cancelTimer() {
+  if (timerHandle) clearTimeout(timerHandle);
+  timerHandle = null;
+  $('timerStatus').textContent = 'Timer cancelled.';
+}
+
+/* PERSONAL SAFETY PLAN */
+const plans = {
+  stalking: [
+    'Move toward a staffed, public place.',
+    'Tell someone you trust where you are.',
+    'Record dates and details only if safe.',
+    'If in immediate danger in India, call 112.'
+  ],
+  blackmail: [
+    'Do not pay or send additional images.',
+    'Save screenshots and account details if safe.',
+    'Report the account and seek trusted support.',
+    'Secure your accounts from a safe device.'
+  ],
+  harassment: [
+    'Move to a safer, populated place if possible.',
+    'Tell a trusted friend, faculty member, or manager.',
+    'Record details and witnesses if safe.',
+    'Seek emergency help if danger is immediate.'
+  ],
+  privacy: [
+    'Change passwords from a trusted device.',
+    'Enable two-factor authentication.',
+    'Save evidence and report the misuse.',
+    'Warn trusted contacts about possible impersonation.'
+  ]
+};
+
+function generatePlan() {
+  const type = $('planType').value;
+  const title = $('planType').selectedOptions[0].textContent;
+
+  showMessage($('planResult'),
+    '<h4>' + escapeHTML(title) + ' — starter plan</h4><ol>' +
+    plans[type].map(step => '<li>' + escapeHTML(step) + '</li>').join('') +
+    '</ol><p>Choose only actions that are safe for your situation.</p>'
+  );
+}
+
+/* QUICK EXIT */
+function quickExit() {
+  $('neutralScreen').style.display = 'block';
+}
+
+function returnDashboard() {
+  $('neutralScreen').style.display = 'none';
+}
+
+/* CONNECT BUTTONS */
+$('prepareSOSBtn').addEventListener('click', prepareSOS);
+$('startJourneyBtn').addEventListener('click', startJourney);
+$('endJourneyBtn').addEventListener('click', endJourney);
+$('analyzeThreatBtn').addEventListener('click', analyzeThreat);
+
+$('clearThreatBtn').addEventListener('click', () => {
+  $('threatText').value = '';
+  $('threatResult').classList.add('hidden');
+});
+
+$('saveIncidentBtn').addEventListener('click', saveIncident);
+$('exportBtn').addEventListener('click', exportRecords);
+$('startTimerBtn').addEventListener('click', startTimer);
+$('cancelTimerBtn').addEventListener('click', cancelTimer);
+$('generatePlanBtn').addEventListener('click', generatePlan);
+$('quickExitBtn').addEventListener('click', quickExit);
+$('returnDashboardBtn').addEventListener('click', returnDashboard);
+
+/* RESTORE SAVED DATA */
+try {
+  const journey = JSON.parse(localStorage.getItem('sakhiJourney_v1') || 'null');
+  if (journey) renderJourney(journey);
+} catch (error) {}
+
+renderIncidents();
+</script>
+</body>
+</html>
